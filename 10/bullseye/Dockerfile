@@ -183,7 +183,7 @@ VOLUME /var/lib/postgresql/data
 ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD postgres
 ENV POSTGRES_DB hastedb
-ADD CreateDB.sql /docker-entrypoint-initdb.d/
+ADD ./docker-entrypoint-initdb.d/CreateDB.sql /docker-entrypoint-initdb.d/
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
