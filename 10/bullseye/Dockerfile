@@ -74,6 +74,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /docker-entrypoint-initdb.d
+COPY CreateDB.sql /docker-entrypoint-initdb.d/
 
 RUN set -ex; \
 # pub   4096R/ACCC4CF8 2011-10-13 [expires: 2019-07-02]
@@ -183,7 +184,7 @@ VOLUME /var/lib/postgresql/data
 ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD postgres
 ENV POSTGRES_DB hastedb
-COPY CreateDB.sql /docker-entrypoint-initdb.d/
+
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
